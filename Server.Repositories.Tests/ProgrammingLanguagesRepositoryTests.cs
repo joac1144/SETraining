@@ -39,26 +39,20 @@ public class ProgrammingLanguagesRepositoryTests : IDisposable
     [Fact]
     public async Task Create_new_ProgrammingLanguage_returns_Created_ProgrammingLanguage()
     {
-        // Arrange.
         var toCreate = new ProgrammingLanguageDTO("SourcePawn");
 
-        // Act.
         var created = await _repository.CreateAsync(toCreate);
         
-        // Assert.
         Assert.Equal("SourcePawn", created.Name);
     }
     
     [Fact]
     public async Task Create_new_ProgrammingLanguage_With_special_Letters()
     {
-        // Arrange.
         var toCreate = new ProgrammingLanguageDTO("Java2");
 
-        // Act.
         var created = await _repository.CreateAsync(toCreate);
         
-        // Assert.
         Assert.Equal("Java2", created.Name);
     }
     
@@ -68,13 +62,10 @@ public class ProgrammingLanguagesRepositoryTests : IDisposable
     [InlineData(null)]
     public async Task Create_new_ProgrammingLanguage_Where_Name_isEmpty_or_null_returns_null(string name)
     {
-        // Arrange.
         var toCreate = new ProgrammingLanguageDTO(name);
 
-        // Act.
         var created = await _repository.CreateAsync(toCreate);
         
-        // Assert.
         Assert.Null(created);
     }
 
@@ -124,13 +115,10 @@ public class ProgrammingLanguagesRepositoryTests : IDisposable
     [InlineData("C#")]
     public async Task Read_given_existing_name_returns_ProgrammingLanguage(string searchName)
     {
-        // Arrange.
         var expected = new ProgrammingLanguageDTO(searchName);
         
-        // Act.
         var actual = await _repository.ReadAsync(searchName);
 
-        // Assert.
         Assert.Equal(expected, actual.Value);
     }
     
@@ -140,13 +128,10 @@ public class ProgrammingLanguagesRepositoryTests : IDisposable
     [InlineData("jAvA")]
     public async Task Read_Upper_and_LowerCase_returns_ProgrammingLanguage_with_same_Lowercase_letters(string searchName)
     {
-        // Arrange.
         var expected = new ProgrammingLanguageDTO(searchName);
         
-        // Act.
         var actual = await _repository.ReadAsync(searchName);
 
-        // Assert.
         Assert.Equal(expected.Name.ToLower(), actual.Value.Name.ToLower());
     }
     

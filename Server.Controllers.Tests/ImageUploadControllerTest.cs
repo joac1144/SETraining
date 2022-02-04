@@ -13,7 +13,6 @@ public class ImageUploadControllerTest
     [Fact]
     public async Task Create_With_Invalid_ContentType_Returns_BadRequest ()
     {
-        // Arrange.
         var FileMock = new Mock<IFormFile>();
         
         // Setup mock file using a memory stream.
@@ -41,17 +40,14 @@ public class ImageUploadControllerTest
 
         var file = FileMock.Object;
         
-        // Act.
         var actual = await controller.Post(FileName, file);
 
-        // Assert.
         Assert.IsType<BadRequestObjectResult>(actual);
     }
     
     [Fact]
     public async Task Create_With_JPEG_ContentType_Returns_Created_And_URI ()
     {
-        // Arrange.
         var FileMock = new Mock<IFormFile>();
         
         // Setup mock file using a memory stream.
@@ -79,10 +75,8 @@ public class ImageUploadControllerTest
 
         var file = FileMock.Object;
         
-        // Act.
         var actual = await controller.Post(FileName, file) as CreatedResult;
 
-        // Assert.
         Assert.IsType<CreatedResult>(actual);
         Assert.Equal(ReturnURI.ToString(), actual?.Location);
     }
@@ -90,7 +84,6 @@ public class ImageUploadControllerTest
     [Fact]
     public async Task Create_With_PNG_ContentType_Returns_Created_And_URI ()
     {
-        // Arrange.
         var FileMock = new Mock<IFormFile>();
         
         // Setup mock file using a memory stream.
@@ -118,10 +111,8 @@ public class ImageUploadControllerTest
 
         var file = FileMock.Object;
         
-        // Act.
         var actual = await controller.Post(FileName, file) as CreatedResult;
 
-        // Assert.
         Assert.IsType<CreatedResult>(actual);
         Assert.Equal(ReturnURI.ToString(), actual?.Location);
     }
@@ -129,7 +120,6 @@ public class ImageUploadControllerTest
     [Fact]
     public async Task Create_With_GIF_ContentType_Returns_Created_And_URI ()
     {
-        // Arrange.
         var FileMock = new Mock<IFormFile>();
         
         // Setup mock file using a memory stream.
@@ -157,10 +147,8 @@ public class ImageUploadControllerTest
 
         var file = FileMock.Object;
         
-        // Act.
         var actual = await controller.Post(FileName, file) as CreatedResult;
 
-        // Assert.
         Assert.IsType<CreatedResult>(actual);
         Assert.Equal(ReturnURI.ToString(), actual?.Location);
     }

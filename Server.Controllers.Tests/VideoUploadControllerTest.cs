@@ -11,8 +11,8 @@ namespace Server.Controllers.Tests;
 public class VideoUploadControllerTest
 {
     [Fact]
-    public async Task Create_New_Video_With_Invalid_ContentType_Returns_BadRequest () {
-        // Arrange.
+    public async Task Create_New_Video_With_Invalid_ContentType_Returns_BadRequest ()
+    {
         var FileMock = new Mock<IFormFile>();
         
         // Setup mock file using a memory stream.
@@ -40,16 +40,14 @@ public class VideoUploadControllerTest
 
         var file = FileMock.Object;
         
-        // Act.
         var actual = await controller.Post(FileName, file);
 
-        // Assert.
         Assert.IsType<BadRequestObjectResult>(actual);
     }
     
     [Fact]
-    public async Task Create_Video_With_MP4_ContentType_Returns_Created_And_URI () {
-        // Arrange.
+    public async Task Create_Video_With_MP4_ContentType_Returns_Created_And_URI ()
+    {
         var FileMock = new Mock<IFormFile>();
         
         //Setup mock file using a memory stream.
@@ -77,10 +75,8 @@ public class VideoUploadControllerTest
 
         var file = FileMock.Object;
         
-        // Act.
         var actual = await controller.Post(FileName, file) as CreatedResult;
 
-        // Assert.
         Assert.IsType<CreatedResult>(actual);
         Assert.Equal(ReturnURI.ToString(), actual?.Location);
     }

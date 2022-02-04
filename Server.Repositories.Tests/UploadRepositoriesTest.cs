@@ -24,26 +24,20 @@ public class UploadRepositoriesTest : IDisposable
     [Fact]
     public async Task CreateUploadAsync_returns_status_Created()
     {
-        // Arrange.
         var ExpectedResult = Status.Created;
         
-        // Act.
         var result = await _repository.CreateUploadAsync("tester.jpg", "jpeg", new MemoryStream());
 
-        // Assert.
         Assert.Equal(ExpectedResult, result.status); 
     }
 
     [Fact]
     public async Task CreateUploadAsync_returns_status_URI_On_Success()
     {
-        // Arrange.
         var ExpectedURI = new Uri("http://127.0.0.1:10000/devstoreaccount1/imagetest/tester.jpg");
 
-        // Act.
         var result = await _repository.CreateUploadAsync("tester.jpg", "jpeg", new MemoryStream());
         
-        // Assert.
         Assert.Equal(ExpectedURI, result.uri); 
     }
     
